@@ -18,10 +18,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="w-full h-full">
+    <html lang="en">
       <body className={`${nunito.className} antialiased`}>
         <Navbar />
-        <main className="flex justify-center items-center sm:items-start">
+        <main className="h-screen flex justify-center items-center sm:items-start">
           {children}
         </main>
       </body>

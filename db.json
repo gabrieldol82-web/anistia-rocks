@@ -1,0 +1,113 @@
+{
+    "members": [
+        {
+            "name": "Gabriel Dantas",
+            "role": "Guitarra",
+            "image": "/assets/capas/gabriel.jpg",
+            "id": 1
+        },
+        {
+            "name": "Rafa Melo",
+            "role": "Vocal",
+            "image": "/assets/capas/rafa.jpg",
+            "id": 2
+        },
+        {
+            "name": "Gutz Pedroza",
+            "role": "Bateria",
+            "image": "/assets/capas/gustavo.jpg",
+            "id": 3
+        },
+        {
+            "name": "Ana Calegari",
+            "role": "Baixo",
+            "image": "/assets/capas/ana.jpg",
+            "id": 4
+        }
+    ],
+    
+    "gabriel": {
+        "id": "1",
+        "name": "Gabriel Dantas",
+        "role": "Guitarra",
+        "image": "/assets/capas/gabriel.jpg",
+        "memberSince": "2023 (Founder)",
+        "bio": "Membro fundador, Gabriel é o dono das 6 cordas. Suas maiores influências no instrumento são Dimebag Darrell, James Hetfield e Joe Duplantier.",
+        "albums": [
+            "From Mars to Sirius, 2005",
+            "Master of Puppets, 1986",
+            "Untouchables, 2002",
+            "Trench, 2018"
+        ],
+        "artists": [
+            "Gojira",
+            "Metallica",
+            "Deftones",
+            "Korn"
+        ],
+        "favoriteToPlay": "Chop Suey, System of a Down"
+    },
+    "rafa": {
+        "id": "2",
+        "name": "Rafa Melo",
+        "role": "Vocal",
+        "image": "/assets/capas/rafa.jpg",
+        "bio": "Rafa é o vocalista principal, trazendo energia e emoção a cada apresentação.",
+        "albums": [
+            "From Mars to Sirius, 2005",
+            "Master of Puppets, 1986",
+            "Untouchables, 2002",
+            "Trench, 2018"
+        ],
+        "artists": [
+            "Gojira",
+            "Metallica",
+            "Deftones",
+            "Korn"
+        ],
+        "favoriteToPlay": "Chop Suey, System of a Down"
+    },
+
+    "gustavo": {
+        "id": "2",
+        "name": "Gutz Pedroza",
+        "role": "Bateria",
+        "image": "/assets/capas/rafa.jpg",
+        "bio": "Gus é o batera, trazendo energia e emoção a cada apresentação.",
+        "albums": [
+            "From Mars to Sirius, 2005",
+            "Master of Puppets, 1986",
+            "Untouchables, 2002",
+            "Trench, 2018"
+        ],
+        "artists": [
+            "Gojira",
+            "Metallica",
+            "Deftones",
+            "Korn"
+        ],
+        "favoriteToPlay": "Chop Suey, System of a Down"
+    },
+
+    "ana": {
+        "id": "4",
+        "name": "Ana Calegari",
+        "role": "Baixo",
+        "image": "/assets/capas/rafa.jpg",
+        "bio": "Ana é a baixista, trazendo groove e profundidade a cada apresentação.",
+        "albums": [
+            "From Mars to Sirius, 2005",
+            "Master of Puppets, 1986",
+            "Untouchables, 2002",
+            "Trench, 2018"
+        ],
+        "artists": [
+            "Gojira",
+            "Metallica",
+            "Deftones",
+            "Korn"
+        ],
+        "favoriteToPlay": "Chop Suey, System of a Down"
+    }
+    
+}

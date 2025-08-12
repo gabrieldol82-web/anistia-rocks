@@ -54,18 +54,18 @@
         "image": "/assets/capas/rafa.jpg",
         "bio": "Rafa é o vocalista principal, trazendo energia e emoção a cada apresentação.",
         "albums": [
-            "From Mars to Sirius, 2005",
-            "Master of Puppets, 1986",
-            "Untouchables, 2002",
-            "Trench, 2018"
+            "Black Gives Way To Blue year, 2009",
+            "Magma, 2016",
+            "Forever Autumn, 1999",
+            "Renegades, 2000"
         ],
         "artists": [
-            "Gojira",
-            "Metallica",
-            "Deftones",
-            "Korn"
+            "Motörhead",
+            "Korn",
+            "Rammstein",
+            "Sepultura"
         ],
-        "favoriteToPlay": "Chop Suey, System of a Down"
+        "favoriteToPlay": "Bodies, Drowing Pool"
     },
 
     "gustavo": {
@@ -75,18 +75,18 @@
         "image": "/assets/capas/rafa.jpg",
         "bio": "Gus é o batera, trazendo energia e emoção a cada apresentação.",
         "albums": [
-            "From Mars to Sirius, 2005",
-            "Master of Puppets, 1986",
-            "Untouchables, 2002",
-            "Trench, 2018"
+            "From Under the Cork Tree, 2005",
+            "CPM22, 2001",
+            "Selfish Machine, 2010",
+            "This is Why, 2023"
         ],
         "artists": [
-            "Gojira",
-            "Metallica",
-            "Deftones",
-            "Korn"
+            "Paramore",
+            "Motionless in White",
+            "A Day to Remember",
+            "Neck Deep"
         ],
-        "favoriteToPlay": "Chop Suey, System of a Down"
+        "favoriteToPlay": "Roots Bloody Roots, Sepultura"
     },
 
     "ana": {
@@ -96,18 +96,18 @@
         "image": "/assets/capas/rafa.jpg",
         "bio": "Ana é a baixista, trazendo groove e profundidade a cada apresentação.",
         "albums": [
-            "From Mars to Sirius, 2005",
-            "Master of Puppets, 1986",
-            "Untouchables, 2002",
-            "Trench, 2018"
+            "The Subliminal Verses, 2005",
+            "A Faver You Can’t Sweat Out, 2005",
+            "Rust in peace, 1990",
+            "Pixote 15 anos"
         ],
         "artists": [
-            "Gojira",
-            "Metallica",
-            "Deftones",
-            "Korn"
+            "Slipknot",
+            "Panic! at the Disco",
+            "Chico Buarque",
+            "System of a Down"
         ],
-        "favoriteToPlay": "Chop Suey, System of a Down"
+        "favoriteToPlay": "Bombtrack, RATM"
     }
     
 }

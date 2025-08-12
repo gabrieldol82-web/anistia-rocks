@@ -56,5 +56,13 @@ export default function Member() {
   if (loading) return <Loading />;
   if (error) return <div className="text-red-500">{error}</div>;
 
-  return <>{member.name}</>;
+  return (
+    <div>
+      <p>{member.name}</p>
+      <p>{member.bio}</p>
+      <p>Álbuns: {member.albums.join(", ")}</p>
+      <p>Artistas: {member.artists.join(", ")}</p>
+      <p>Favorita: {member.favoriteToPlay}</p>
+    </div>
+  );
 }

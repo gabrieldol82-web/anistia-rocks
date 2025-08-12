@@ -19,7 +19,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth overflow-hidden">
-      <body className={`${nunito.className} antialiased bg-zinc-300 dark:bg-zinc-700 dark:text-zinc-300`}>
+      <body className={`${nunito.className} bg-zinc-300 dark:bg-zinc-700 dark:text-zinc-300 antialiased vsc-initialized`}>
         <Navbar />
         <main className="h-screen flex justify-center items-center sm:items-start">
           {children}

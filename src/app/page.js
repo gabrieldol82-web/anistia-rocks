@@ -1,6 +1,7 @@
 import Image from "next/image";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import HomeImages from "./components/HomeImages";
 
 export default function Home() {
   return (
@@ -37,43 +38,20 @@ export default function Home() {
         </div>
       </section>
       <section className="h-screen" id="section-2">
-        <div className="w-full flex justify-center" style={{marginTop: "3rem"}}>
-          <a href="#section-1" className="bg-transparent my-16">
-            <ExpandLessIcon
-              fontSize="large"
-              className="hover:text-gray-100 transition-colors duration-300"
-            />
-          </a>
-        </div>
-        <div className="relative flex-1 h-[calc(100%-64px)]">
-          <Image
-            src="/assets/home.jpg"
-            alt="Home"
-            width={800}
-            height={1000}
-            className="object-cover"
-          />
-          <Image
-            src="/assets/home_2.jpg"
-            alt="Home"
-            width={800}
-            height={1000}
-            className="object-cover"
-          />
-          <Image
-            src="/assets/home_3.jpg"
-            alt="Home"
-            width={800}
-            height={1000}
-            className="object-cover"
-          />
-          <Image
-            src="/assets/home_4.jpg"
-            alt="Home"
-            width={800}
-            height={1000}
-            className="object-cover"
-          />
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-16">
+          <HomeImages imageSrc="/assets/home.JPG" altText="Foto mais foda" />
+          <HomeImages imageSrc="/assets/home_2.jpg" altText="Foto da capa" />
+          <HomeImages imageSrc="/assets/home_3.jpg" altText="Foto da capa" />
+          <HomeImages imageSrc="/assets/home_4.jpg" altText="Foto da capa" />
+          <HomeImages imageSrc="/assets/home_5.JPG" altText="Foto da capa" />
+          <HomeImages imageSrc="/assets/home_14.jpeg" altText="Foto da capa" />
+          <HomeImages imageSrc="/assets/home_12.jpg" altText="Foto da capa" />
+          <HomeImages imageSrc="/assets/home_11.jpg" altText="Foto da capa" />
+          <HomeImages imageSrc="/assets/home_6.JPG" altText="Foto da capa" />
+          <HomeImages imageSrc="/assets/home_8.JPG" altText="Foto da capa" />
+          <HomeImages imageSrc="/assets/home_10.jpg" altText="Foto da capa" />
+          <HomeImages imageSrc="/assets/home_13.jpeg" altText="Foto da capa" />
+          
         </div>
       </section>
     </div>

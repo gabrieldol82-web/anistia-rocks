@@ -1,0 +1,29 @@
+POST http://localhost:3333/shows
+Content-type: application/json
+
+{
+    "title": "Show 4",
+    "location": "Casa 4",
+    "description": "Description for Show 4",
+    "show_date": "2025-08-14 10:30:00"
+}
+
+
+###
+
+GET http://localhost:3333/shows
+
+
+###
+PUT http://localhost:3333/shows/e9fe17d8-d7bc-4141-bf10-0cf7d1fad926
+Content-Type: application/json
+
+{
+    "title": "Show 33",
+    "location": "Casa 2",
+    "description": "Description for Show 33",
+    "show_date": "2024-09-14 10:30:00"
+}
+
+###
+DELETE http://localhost:3333/shows/e9fe17d8-d7bc-4141-bf10-0cf7d1fad926

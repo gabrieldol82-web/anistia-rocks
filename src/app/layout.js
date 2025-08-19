@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
     <html lang="en" className="scroll-smooth">
       <body className={`${nunito.className} bg-zinc-300 dark:bg-zinc-700 dark:text-zinc-300 antialiased vsc-initialized`}>
         <Navbar />
-        <main className="h-screen flex justify-center items-center sm:items-start">
+        <main className="h-screen flex justify-center mt-32 items-center sm:items-start">
           {children}
         </main>
       </body>

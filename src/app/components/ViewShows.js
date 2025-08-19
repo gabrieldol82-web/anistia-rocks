@@ -1,12 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useShow } from "../context/ShowContext";
+import Link from "next/link";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 
 export default function ViewShows({ pageName, isAdmin = false }) {
   const [loading, setLoading] = useState(false);
   const [shows, setShows] = useState([]);
+  const { currentShow, setCurrentShow } = useShow();
 
   const getShows = async () => {
     let res = await fetch("http://localhost:3333/shows");
@@ -43,6 +46,10 @@ export default function ViewShows({ pageName, isAdmin = false }) {
     getShows();
   };
 
+  const handleEdit = (show) => {
+    setCurrentShow(show);
+  };
+
   return (
     <div>
       <h1 className="font-black text-center text-[28px]">{pageName}</h1>
@@ -67,9 +74,11 @@ export default function ViewShows({ pageName, isAdmin = false }) {
             </div>
             {isAdmin ? (
               <div className="w-1/4 flex flex-col items-end gap-4">
-                <a className="w-fit text-white rounded-md p-2 hover:bg-yellow-600 transition duration-150 cursor-pointer">
+                <Link className="w-fit text-white rounded-md p-2 hover:bg-yellow-600 transition duration-150 cursor-pointer"
+                  href="/admin/editShow" onClick={() => handleEdit(show)}
+                >
                   <EditIcon />
-                </a>
+                </Link>
                 <button
                   className="w-fit text-white rounded-md p-2 hover:bg-red-700 transition duration-150 cursor-pointer"
                   onClick={() => handleDelete(show.id)}

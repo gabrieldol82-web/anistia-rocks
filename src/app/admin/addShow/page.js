@@ -72,7 +72,7 @@ export default function AddShow() {
       setDescription("");
       setDateTime("");
       alert("Show criado com sucesso!");
-      window.location.href = "/admin";      
+      window.location.href = "/admin";
     }
 
   }

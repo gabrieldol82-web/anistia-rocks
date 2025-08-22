@@ -52,7 +52,7 @@ export default function ViewShows({ pageName, isAdmin = false }) {
 
   return (
     <div>
-      <h1 className="font-black text-center text-[28px]">{pageName}</h1>
+      <h1 className="from-neutral-50 text-center text-[28px]">{pageName}</h1>
       {shows.length === 0 && (
         <p className="text-center text-zinc-400">Carregando Shows...</p>
       )}
@@ -63,7 +63,7 @@ export default function ViewShows({ pageName, isAdmin = false }) {
         return (
           <div
             key={show.id}
-            className="border-b border-zinc-200 dark:border-zinc-700 py-2 flex flexrow"
+            className="border-b border-zinc-200 border-zinc-700 py-2 flex flexrow"
           >
             <div className="w-3/4">
               <h2 className="font-bold text-lg">{show.title}</h2>

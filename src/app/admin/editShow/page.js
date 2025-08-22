@@ -89,14 +89,14 @@ export default function EditShow() {
 
     if (!currentShow) {
         return (
-            <div className="min-w-md max-w-4xl mx-auto p-4 bg-white dark:bg-zinc-800 rounded-lg shadow-md">
+            <div className="min-w-md max-w-4xl mx-auto p-4 bg-white bg-zinc-800 rounded-lg shadow-md">
                 <h1 className="font-black text-center text-[28px]">Carregando...</h1>
             </div>
         )
     }
 
     return (
-    <div className="min-w-md max-w-4xl mx-auto p-4 bg-white dark:bg-zinc-800 rounded-lg shadow-md">
+    <div className="min-w-md max-w-4xl mx-auto p-4 bg-white bg-zinc-800 rounded-lg shadow-md">
       <h1 className="font-black text-center text-[28px]">Criar Novo Show</h1>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <div>
@@ -173,7 +173,9 @@ export default function EditShow() {
             onChange={(e) => setDateTime(e.target.value)}
           />
         </div>
-
+        <div>
+          
+        </div>
         <button
           className="bg-indigo-600 text-white rounded-md p-2 hover:bg-indigo-700 transition duration-150 cursor-pointer"
           type="submit"

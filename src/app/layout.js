@@ -20,7 +20,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${nunito.className} bg-zinc-300 dark:bg-zinc-700 dark:text-zinc-300 antialiased vsc-initialized`}>
+      <body className={`${nunito.className} bg-zinc-700 text-white antialiased vsc-initialized`}>
         <Navbar />
         <ShowProvider>
           <main className="h-screen flex justify-center mt-32 items-center sm:items-start">

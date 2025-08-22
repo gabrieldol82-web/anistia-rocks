@@ -13,13 +13,14 @@ const database = new DatabasePostgres();
 
 server.post('/shows', async (request, response) => {
 
-    const { title, location, description, show_date  } = request.body;
+    const { title, location, description, show_date, is_completed } = request.body;
 
     await database.create({
         title,
         location,
         description,
-        show_date 
+        show_date,
+        is_completed: 0
     })
 
     return response.status(201).send()
@@ -28,6 +29,14 @@ server.post('/shows', async (request, response) => {
 server.get('/shows', async (request, response) => {
     const shows = await database.list();
 
+    shows.sort((a, b) => {
+        if (a.is_completed === b.is_completed) {
+            return new Date(b.show_date) - new Date(a.show_date);
+        }
+        return a.is_completed ? 1 : -1;
+    });
+    shows.sort((a, b) => new Date(b.show_date) - new Date(a.show_date));
+
     return shows;
 })
 
@@ -35,13 +44,14 @@ server.put('/shows/:id', async (request, response) => {
 
     const showId = request.params.id;
 
-    const { title, location, description, show_date  } = request.body;
+    const { title, location, description, show_date, is_completed } = request.body;
 
     await database.update(showId, {
         title,
         location,
         description,
-        show_date
+        show_date,
+        is_completed
     });
 
 

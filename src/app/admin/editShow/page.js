@@ -2,6 +2,7 @@
 import { useShow } from "../../context/ShowContext";
 import { useEffect, useState } from 'react';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import { Switch } from "@mui/material";
 
 export default function EditShow() {
     const { currentShow } = useShow();
@@ -9,6 +10,7 @@ export default function EditShow() {
     const [description, setDescription] = useState("");
     const [location, setLocation] = useState("");
     const [dateTime, setDateTime] = useState("");
+    const [is_completed, setIs_completed] = useState(false);
     const [loading, setLoading] = useState(false);
 
     const inputClasses =
@@ -19,10 +21,10 @@ export default function EditShow() {
             setTitle(currentShow.title);
             setDescription(currentShow.description);
             setLocation(currentShow.location);
+            setIs_completed(currentShow.is_completed);
             const date = new Date(currentShow.show_date);
             const formattedDateTime = date.toISOString().slice(0, 16);
             setDateTime(formattedDateTime);
-            console.log("Current Show:", currentShow);
         }
     }, [currentShow]);
 
@@ -65,7 +67,8 @@ export default function EditShow() {
             title,
             description,
             location,
-            show_date: dateTime
+            show_date: dateTime,
+            is_completed: is_completed
         }
 
         const res = await fetch(`http://localhost:3333/shows/${currentShow.id}`, {
@@ -86,6 +89,9 @@ export default function EditShow() {
 
     }
 
+    const checkIsCompleted = (e) => {
+        setIs_completed(e.target.checked);
+    }
 
     if (!currentShow) {
         return (
@@ -174,7 +180,13 @@ export default function EditShow() {
           />
         </div>
         <div>
-          
+          <label htmlFor="is_completed">Show já ocorreu?</label>
+          <Switch
+            id="is_completed"
+            name="is_completed"
+            checked={is_completed}
+            onChange={checkIsCompleted}
+          />
         </div>
         <button
           className="bg-indigo-600 text-white rounded-md p-2 hover:bg-indigo-700 transition duration-150 cursor-pointer"

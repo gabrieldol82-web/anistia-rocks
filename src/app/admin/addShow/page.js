@@ -52,7 +52,6 @@ export default function AddShow() {
       location,
       description,
       show_date: dateTime
-      
     }
 
     const response = await fetch("http://localhost:3333/shows", {
@@ -78,7 +77,7 @@ export default function AddShow() {
   }
 
   return (
-    <div className="min-w-md max-w-4xl mx-auto p-4 bg-white bg-zinc-800 rounded-lg shadow-md">
+    <div className="min-w-md max-w-4xl mx-auto p-4 bg-zinc-800 rounded-lg shadow-md">
       <h1 className="font-black text-center text-[28px]">Criar Novo Show</h1>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <div>

@@ -51,7 +51,7 @@ export default function ViewShows({ pageName, isAdmin = false }) {
   };
 
   return (
-    <div>
+    <div className="overflow-y-auto">
       <h1 className="from-neutral-50 text-center text-[28px]">{pageName}</h1>
       {shows.length === 0 && (
         <p className="text-center text-zinc-400">Carregando Shows...</p>
@@ -60,10 +60,11 @@ export default function ViewShows({ pageName, isAdmin = false }) {
         <p className="text-center text-zinc-400">Excluindo Show...</p>
       )}
       {shows.map((show) => {
+        const isCompletedShow = show.is_completed ? 'opacity-50 ' : '';
         return (
           <div
             key={show.id}
-            className="border-b border-zinc-200 border-zinc-700 py-2 flex flexrow"
+            className={`border-b ${isCompletedShow} border-zinc-700 py-2 flex flex-row`}
           >
             <div className="w-3/4">
               <h2 className="font-bold text-lg">{show.title}</h2>
@@ -73,7 +74,7 @@ export default function ViewShows({ pageName, isAdmin = false }) {
               </p>
             </div>
             {isAdmin ? (
-              <div className="w-1/4 flex flex-col items-end gap-4">
+              <div className="w-1/4 flex flex-col items-end gap-2">
                 <Link className="w-fit text-white rounded-md p-2 hover:bg-yellow-600 transition duration-150 cursor-pointer"
                   href="/admin/editShow" onClick={() => handleEdit(show)}
                 >

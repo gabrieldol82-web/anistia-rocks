@@ -19,7 +19,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body className={`${nunito.className} bg-zinc-700 text-white antialiased vsc-initialized`}>
         <Navbar />
         <ShowProvider>

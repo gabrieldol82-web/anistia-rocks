@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
-import Loading from "../../components/Loading";
+import Loading from "../../_components/Loading";
 
 export default function Member() {
   const { id } = useParams();

@@ -1,5 +1,5 @@
 "use client"
-import { useShow } from "../../context/ShowContext";
+import { useShow } from "../../_context/ShowContext";
 import { useEffect, useState } from 'react';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { Switch } from "@mui/material";

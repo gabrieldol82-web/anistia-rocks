@@ -1,7 +1,7 @@
 import Image from "next/image";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import HomeImages from "./components/HomeImages";
+import HomeImages from "./_components/HomeImages";
 
 export default function Home() {
   return (

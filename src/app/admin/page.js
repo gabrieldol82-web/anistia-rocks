@@ -1,4 +1,4 @@
-import ViewShows from "../components/ViewShows";
+import ViewShows from "../_components/ViewShows";
 
 export default function AdminPage() {
   

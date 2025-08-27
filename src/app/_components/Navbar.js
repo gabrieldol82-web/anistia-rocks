@@ -4,7 +4,7 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 
 export default function Navbar() {
   return (
-    <nav className="fixed top-0 right-0 left-0 p-8 bg-transparent font-sans font-nunito text-3xl font-semibold">
+    <nav className="top-0 right-0 left-0 p-8 bg-transparent font-sans font-nunito text-3xl font-semibold">
       <div className="flex items-center justify-between">
         <ul className="flex space-x-14">
           <li>

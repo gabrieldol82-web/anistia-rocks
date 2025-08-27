@@ -33,19 +33,15 @@
         "image": "/assets/capas/gabriel.jpg",
         "memberSince": "2023 (Founder)",
         "bio": "Membro fundador, Gabriel é o dono das 6 cordas. Suas maiores influências no instrumento são Dimebag Darrell, James Hetfield e Joe Duplantier.",
-        "albums": [
-            "From Mars to Sirius, 2005",
-            "Master of Puppets, 1986",
-            "Untouchables, 2002",
-            "Trench, 2018"
-        ],
+        "albums": ["382ObEPsp2rxGrnsizN5TX","1A2GTWGtFfWp7KSQTwWOyo", "2noRn2Aes5aoNVsU6iWThc"],
+        
         "artists": [
             "Gojira",
             "Metallica",
             "Deftones",
             "Korn"
         ],
-        "favoriteToPlay": "Chop Suey, System of a Down"
+        "favoriteToPlay": "2DlHlPMa4M17kufBvI2lEN?utm_source=generator&theme=0"
     },
     "rafa": {
         "id": "2",
@@ -65,7 +61,7 @@
             "Rammstein",
             "Sepultura"
         ],
-        "favoriteToPlay": "Bodies, Drowing Pool"
+        "favoriteToPlay": "7CpbhqKUedOIrcvc94p60Y?utm_source=generator"
     },
 
     "gustavo": {
@@ -86,7 +82,7 @@
             "A Day to Remember",
             "Neck Deep"
         ],
-        "favoriteToPlay": "Roots Bloody Roots, Sepultura"
+        "favoriteToPlay": "6ursmCnbc9oDRGa2yHKkoZ?utm_source=generator&theme=0"
     },
 
     "ana": {
@@ -107,7 +103,16 @@
             "Chico Buarque",
             "System of a Down"
         ],
-        "favoriteToPlay": "Bombtrack, RATM"
+        "favoriteToPlay": "2rBHnIxbhkMGLpqmsNX91M?utm_source=generator"
     }
     
 }
+
+// Albums do Gabriel
+// "albums": [
+            
+//   "  "From Mars to Sirius, 2005",
+//     "Master of Puppets, 1986",
+//     "Untouchables, 2002",
+//     "Trench, 2018"
+// ],"

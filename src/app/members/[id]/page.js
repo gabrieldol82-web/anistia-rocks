@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import Loading from "../../_components/Loading";
+import { SpotifySong, SpotifyCover } from "../../_components/Spotify";
 
 export default function Member() {
   const { id } = useParams();
@@ -36,7 +37,6 @@ export default function Member() {
 
         if (isMounted) {
           setMember(data);
-          console.log("Dados do membro:", data);
         }
       } catch (err) {
         if (isMounted) {
@@ -57,12 +57,55 @@ export default function Member() {
   if (error) return <div className="text-red-500">{error}</div>;
 
   return (
-    <div>
-      <p>{member.name}</p>
-      <p>{member.bio}</p>
-      <p>Álbuns: {member.albums.join(", ")}</p>
-      <p>Artistas: {member.artists.join(", ")}</p>
-      <p>Favorita: {member.favoriteToPlay}</p>
+    <div className="max-w-5xl mx-auto p-6 space-y-12">
+      {/* Header */}
+      <section className="text-center space-y-4">
+        <h1 className="text-4xl font-bold">{member.name}</h1>
+        <p className="text-gray-600 text-lg">{member.bio}</p>
+      </section>
+
+      {/* Galeria de Fotos 
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Fotos</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {member.photos.map((photo, index) => (
+            <img
+              key={index}
+              src={photo}
+              alt={`${member.name} ${index + 1}`}
+              className="w-full h-48 object-cover rounded-xl shadow-md hover:scale-105 transition-transform"
+            />
+          ))}
+        </div>
+      </section>
+      */}
+
+      {/* Álbuns Favoritos */}
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Álbuns Favoritos</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {member.albums.map((album, index) => (
+            <div
+              key={index}
+              className="flex flex-col items-center space-y-2 bg-white rounded-2xl shadow-lg p-3 hover:shadow-xl"
+            >
+              <img
+                src={album.cover}
+                alt={album.title}
+                className="w-32 h-32 object-cover rounded-xl"
+              />
+              <p className="font-medium text-center">{album.title}</p>
+              <p className="text-sm text-gray-500">{album.artist}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Música Favorita (Spotify Embed) */}
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Favorita de tocar na Anistia</h2>
+        <SpotifySong trackId={member.favoriteToPlay} />
+      </section>
     </div>
   );
 }

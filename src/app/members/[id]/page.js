@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import Loading from "../../_components/Loading";
-import { SpotifySong, SpotifyCover } from "../../_components/Spotify";
+import { SpotifySongs, SpotifyAlbums, SpotifyArtists } from "../../_components/Spotify";
 
 export default function Member() {
   const { id } = useParams();
@@ -57,11 +57,14 @@ export default function Member() {
   if (error) return <div className="text-red-500">{error}</div>;
 
   return (
-    <div className="max-w-5xl mx-auto p-6 space-y-12">
-      {/* Header */}
-      <section className="text-center space-y-4">
-        <h1 className="text-4xl font-bold">{member.name}</h1>
-        <p className="text-gray-600 text-lg">{member.bio}</p>
+    <div className="max-w-6xl mx-auto p-6 space-y-12">
+      <h1 className="text-4xl font-bold">{member.name}</h1>
+      <section className="text-center space-y-4 flex flex-row md:flex-col items-center">
+        <div className="w-3/4"></div>
+        <div className="w-1/4">
+          <p className="text-lg">{member.bio}</p>
+        </div>
+        
       </section>
 
       {/* Galeria de Fotos 
@@ -80,31 +83,27 @@ export default function Member() {
       </section>
       */}
 
-      {/* Álbuns Favoritos */}
       <section>
-        <h2 className="text-2xl font-semibold mb-4">Álbuns Favoritos</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {member.albums.map((album, index) => (
-            <div
-              key={index}
-              className="flex flex-col items-center space-y-2 bg-white rounded-2xl shadow-lg p-3 hover:shadow-xl"
-            >
-              <img
-                src={album.cover}
-                alt={album.title}
-                className="w-32 h-32 object-cover rounded-xl"
-              />
-              <p className="font-medium text-center">{album.title}</p>
-              <p className="text-sm text-gray-500">{album.artist}</p>
-            </div>
-          ))}
+        <h2 className="text-2xl font-semibold mb-4">Artistas Favoritos</h2>
+        <div className="grid grid-cols-1 gap-6">
+          {member.artists.map((artist, index) => {
+            return <SpotifyArtists artistId={artist} key={index} />;
+          })}
         </div>
       </section>
 
-      {/* Música Favorita (Spotify Embed) */}
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Álbuns Favoritos</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {member.albums.map((album, index) => {
+            return <SpotifyAlbums albumId={album} key={index} />;
+          })}
+        </div>
+      </section>
+
       <section>
         <h2 className="text-2xl font-semibold mb-4">Favorita de tocar na Anistia</h2>
-        <SpotifySong trackId={member.favoriteToPlay} />
+        <SpotifySongs trackId={member.favoriteToPlay} />
       </section>
     </div>
   );

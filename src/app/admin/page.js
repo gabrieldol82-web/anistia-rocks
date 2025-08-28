@@ -1,7 +1,33 @@
+"use client";
+
 import ViewShows from "../_components/ViewShows";
+import Loading from "../_components/Loading";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function AdminPage() {
-  
+  const [authenticated, setAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const router = useRouter();
+
+  const checkAuth = async () => {
+    try {
+      const response = await fetch("/api/admin/auth");
+      if (response.ok) {
+        setAuthenticated(true);
+      } else {
+        router.push("/admin/login");
+      }
+    } catch (error) {
+      console.error("Erro ao verificar autenticação:", error);
+      router.push("/admin/login");
+    } finally {
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+    checkAuth();
+  }, [router]);
 
   return (
     <div className="min-w-md max-w-6xl mx-auto p-4  bg-zinc-800 rounded-lg shadow-md">

@@ -1,13 +1,37 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from 'next/navigation';
+import Loading from "@/app/_components/Loading";
 
 export default function AddShow() {
+
+  // Para autenticação
+  const [authenticated, setAuthenticated] = useState(false);
+  const [loadingAuth, setLoadingAuth] = useState(true);
+  const router = useRouter();
+
+  // Variáveis de post
   const [loading, setLoading] = useState(false);
   const [location, setlocation] = useState("");
   const [title, setTitle] = useState("");
   const [dateTime, setDateTime] = useState("");
   const [description, setDescription] = useState("");
+
+  useEffect(() => {
+    fetch('/api/admin/auth').then(response => {
+      if(response.ok) {
+        setAuthenticated(true);
+      } else {
+        router.push('/admin/login');
+      }
+    }).catch(() => {
+      router.push('/admin/login');
+    }).finally(() => setLoadingAuth(false));
+  }, [router])
+
+  // if(loadingAuth) return <p><Loading /></p>;
+  if(!authenticated) return null;
 
   const inputClasses =
     "bg-gray-600 text-white border-0 rounded-md p-2 w-full focus:bg-gray-500 focus:outline-none transition ease-in-out duration-150 placeholder-gray-300";

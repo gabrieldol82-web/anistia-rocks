@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
       <body className={`${nunito.className} bg-zinc-700 text-white antialiased vsc-initialized`}>
         <Navbar />
         <ShowProvider>
-          <main className="h-screen flex justify-center mt-14 items-center sm:items-start">
+          <main className="flex justify-center mt-14 items-center sm:items-start mb-24">
             {children}
           </main>
         </ShowProvider>

@@ -5,6 +5,8 @@ import { useShow } from "../_context/ShowContext";
 import Link from "next/link";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import Swal from "sweetalert2";
+import Loading from "./Loading";
 
 export default function ViewShows({ pageName, isAdmin = false }) {
   const [loading, setLoading] = useState(false);
@@ -35,15 +37,27 @@ export default function ViewShows({ pageName, isAdmin = false }) {
   };
 
   const handleDelete = async (id) => {
-    if (!window.confirm("Tem certeza que deseja excluir este show?")) {
-      return;
-    }
-    setLoading(true);
-    await fetch(`http://localhost:3333/shows/${id}`, {
-      method: "DELETE",
+    const result = await Swal.fire({
+      title: "Tem certeza que deseja deletar?",
+      text: "Esta ação não pode ser desfeita.",
+      showCancelButton: true,
+      confirmButtonText: "Deletar",
     });
-    setLoading(false);
-    getShows();
+
+    if (result.isConfirmed) {
+      setLoading(true);
+      await fetch(`http://localhost:3333/shows/${id}`, {
+        method: "DELETE",
+      });
+      setLoading(false);
+      getShows();
+
+      Swal.fire({
+        title: "Deletado!",
+        text: "O show foi deletado com sucesso.",
+        icon: "success",
+      });
+    }
   };
 
   const handleEdit = (show) => {
@@ -57,10 +71,10 @@ export default function ViewShows({ pageName, isAdmin = false }) {
         <p className="text-center text-zinc-400">Carregando Shows...</p>
       )}
       {loading && (
-        <p className="text-center text-zinc-400">Excluindo Show...</p>
+        <Loading />
       )}
       {shows.map((show) => {
-        const isCompletedShow = show.is_completed ? 'opacity-50 ' : '';
+        const isCompletedShow = show.is_completed ? "opacity-50 " : "";
         return (
           <div
             key={show.id}
@@ -75,8 +89,10 @@ export default function ViewShows({ pageName, isAdmin = false }) {
             </div>
             {isAdmin ? (
               <div className="w-1/4 flex flex-col items-end gap-2">
-                <Link className="w-fit text-white rounded-md p-2 hover:bg-yellow-600 transition duration-150 cursor-pointer"
-                  href="/admin/editShow" onClick={() => handleEdit(show)}
+                <Link
+                  className="w-fit text-white rounded-md p-2 hover:bg-yellow-600 transition duration-150 cursor-pointer"
+                  href="/admin/editShow"
+                  onClick={() => handleEdit(show)}
                 >
                   <EditIcon />
                 </Link>

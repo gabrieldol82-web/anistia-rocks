@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from 'next/navigation';
+import Swal from "sweetalert2";
 import Loading from "@/app/_components/Loading";
 
 export default function AddShow() {
@@ -67,7 +68,11 @@ export default function AddShow() {
     event.preventDefault();
 
     if (!title || !description || !dateTime || !location) {
-      alert("Por favor, preencha todos os campos.");
+      Swal.fire({
+        icon: "error",
+        title: "Erro",
+        text: "Por favor, preencha todos os campos."
+      })
       return;
     }
 
@@ -94,8 +99,15 @@ export default function AddShow() {
       setlocation("");
       setDescription("");
       setDateTime("");
-      alert("Show criado com sucesso!");
-      window.location.href = "/admin";
+      Swal.fire({
+        text: "Show criado com sucesso!",
+        icon: "success"
+      }).then((isConfirmed) => {
+        if(isConfirmed) {
+          window.location.href = "/admin";
+        }
+      })
+      
     }
 
   }

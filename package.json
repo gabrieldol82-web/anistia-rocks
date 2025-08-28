@@ -29,7 +29,8 @@
     "postgres": "^3.4.7",
     "react": "19.1.0",
     "react-bootstrap": "^2.10.10",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "sweetalert2": "^11.22.5"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

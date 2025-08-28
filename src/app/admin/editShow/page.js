@@ -1,15 +1,26 @@
 "use client";
 import { useShow } from "../../_context/ShowContext";
 import { useEffect, useState } from "react";
+import { useRouter } from 'next/navigation';
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import Loading from "@/app/_components/Loading";
 import { Switch } from "@mui/material";
+import Swal from "sweetalert2";
 
 export default function EditShow() {
   // Para autenticação
   const [authenticated, setAuthenticated] = useState(false);
   const [loadingAuth, setLoadingAuth] = useState(true);
   const router = useRouter();
+
+  // Variáveis de post
+  const { currentShow } = useShow();
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [location, setLocation] = useState("");
+  const [dateTime, setDateTime] = useState("");
+  const [is_completed, setIs_completed] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetch("/api/admin/auth")
@@ -26,26 +37,6 @@ export default function EditShow() {
       .finally(() => setLoadingAuth(false));
   }, [router]);
 
-  if (loadingAuth)
-    return (
-      <p>
-        <Loading />
-      </p>
-    );
-  if (!authenticated) return null;
-
-  // Variáveis de post
-  const { currentShow } = useShow();
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [location, setLocation] = useState("");
-  const [dateTime, setDateTime] = useState("");
-  const [is_completed, setIs_completed] = useState(false);
-  const [loading, setLoading] = useState(false);
-
-  const inputClasses =
-    "bg-gray-600 text-white border-0 rounded-md p-2 w-full focus:bg-gray-500 focus:outline-none transition ease-in-out duration-150 placeholder-gray-300";
-
   useEffect(() => {
     if (currentShow) {
       setTitle(currentShow.title);
@@ -57,6 +48,12 @@ export default function EditShow() {
       setDateTime(formattedDateTime);
     }
   }, [currentShow]);
+
+  if (loadingAuth) return (<Loading />);
+  if (!authenticated) return null;
+
+  const inputClasses =
+    "bg-gray-600 text-white border-0 rounded-md p-2 w-full focus:bg-gray-500 focus:outline-none transition ease-in-out duration-150 placeholder-gray-300";
 
   const checkCEP = async (e) => {
     let cep = e.target.value.replace(/\D/g, "");
@@ -112,11 +109,21 @@ export default function EditShow() {
     });
 
     if (res.ok) {
-      if (confirm("Show atualizado com sucesso! Clique em OK para voltar.")) {
-        window.location.href = "/admin";
-      }
+      Swal.fire({
+        title: "Sucesso",
+        text: "Show atualizado com sucesso!",
+        icon: "success"
+      }).then((isConfirmed) => {
+        if(isConfirmed) {
+          window.location.href = "/admin";
+        }
+      })
     } else {
-      alert("Erro ao atualizar o show.");
+      Swal.fire({
+        title: "Erro",
+        text: "Erro ao atualizar o show.",
+        icon: "error"
+      })
     }
   };
 

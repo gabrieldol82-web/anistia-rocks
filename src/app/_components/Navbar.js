@@ -8,7 +8,13 @@ export default function Navbar() {
       <div className="flex items-center justify-between">
         <ul className="flex space-x-14">
           <li>
-            <a href="/" className="md:hover:border-b md:hover:border-black-800 md:hover:border-solid">Home</a></li>
+            <a
+              href="/"
+              className="md:hover:border-b md:hover:border-black-800 md:hover:border-solid"
+            >
+              Home
+            </a>
+          </li>
           <li>
             <a
               href="/members"
@@ -31,25 +37,25 @@ export default function Navbar() {
             href="https://www.instagram.com/anistiarocks/"
             target="_blank"
             rel="noopener noreferrer"
+            className="transition-transform hover:scale-110 hover:text-black"
+            title="Instagram"
           >
             <InstagramIcon
-              className="md:hover:bg-blue-50 rounded-4xl"
-              width={100}
-              height={100}
-              fontSize="large"
+              className="p-2 rounded-full hover:bg-blue-50 hover:shadow-lg"
+              style={{ fontSize: 50 }}
             />
           </a>
+
           <Tooltip title="Chama no WhatsApp!" arrow>
             <a
               href="https://wa.me/11995474478"
               target="_blank"
               rel="noopener noreferrer"
+              className="hover:text-black"
             >
               <WhatsAppIcon
-                className="md:hover:bg-green-50 rounded-4xl"
-                width={100}
-                height={100}
-                fontSize="large"
+                className="p-2 rounded-full hover:bg-green-50 hover:shadow-lg"
+                style={{ fontSize: 50 }}
               />
             </a>
           </Tooltip>

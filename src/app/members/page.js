@@ -1,15 +1,16 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Loading from "../_components/Loading";
 
 export default function Members() {
-  const [members, setMembers] = useState([]);
+  const [ members, setMembers ] = useState([]);
   const [loading, setLoading] = useState(true);
 
   async function fetchMembers() {
-    const response = await fetch("http://localhost:3001/members");
-    const members = await response.json();
+    const response = await fetch("http://localhost:3333/members");
+    const membersGET = await response.json();
 
     await Promise.all(
       members.map((member) => {
@@ -22,7 +23,7 @@ export default function Members() {
       })
     );
 
-    setMembers(members);
+    setMembers(membersGET);
     setLoading(false);
   }
 
@@ -53,7 +54,7 @@ export default function Members() {
             <p className="text-xl bg-sky-500 font-black py-1.5 px-8 inline-block transform -skew-x-12">
               {member.role}
             </p>
-            <Link href={`/members/${member.id}`} className="text-black mt-2">
+            <Link href={`/members/member?id=${member.id}`} className="text-black mt-2">
               Clique aqui
             </Link>
           </div>

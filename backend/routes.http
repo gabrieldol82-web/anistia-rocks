@@ -31,3 +31,7 @@ DELETE http://localhost:3333/shows/e9fe17d8-d7bc-4141-bf10-0cf7d1fad926
 
 ###
 GET http://localhost:3333/members
+
+###
+
+GET http://localhost:3333/members/c1679fff-d36b-4b64-914d-c386d0ab7e1e

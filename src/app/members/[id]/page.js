@@ -1,52 +1,36 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useParams } from "next/navigation";
 import Loading from "../../_components/Loading";
+import { useSearchParams } from "next/navigation";
 import { SpotifySongs, SpotifyAlbums, SpotifyArtists } from "../../_components/Spotify";
+import Swal from "sweetalert2";
 
 export default function Member() {
-  const { id } = useParams();
   const [member, setMember] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const idName = {
-    1: "gabriel",
-    2: "rafa",
-    3: "gustavo",
-    4: "ana",
-  };
+  const params = useSearchParams();
+  const id = params.get("id");
 
   useEffect(() => {
+    if (!id) return;
+
     async function fetchMember() {
-      let isMounted = true;
       try {
-        const name = idName[id];
-        if (!name) {
-          if (isMounted) {
-            setError("Membro não encontrado");
-            setLoading(false);
-          }
-          return;
-        }
-
-        const response = await fetch(`http://localhost:3001/${name}`);
-        if (!response.ok) throw new Error("Erro ao buscar membro.");
+        const response = await fetch(`http://localhost:3333/members/${id}`);
+        if (!response.ok) throw new Error("Erro ao buscar membro");
         const data = await response.json();
-
-        if (isMounted) {
-          setMember(data);
-        }
+        setMember(data);
       } catch (err) {
-        if (isMounted) {
-          setError(err.message);
-          setLoading(false);
-        }
+        Swal.fire({
+          icon: "error",
+          title: "Oops... Erro ao carregar membro!",
+          text: err.message,
+        });
       } finally {
-        if (isMounted) {
-          setLoading(false);
-        }
+        setLoading(false);
       }
     }
 
@@ -58,7 +42,11 @@ export default function Member() {
 
   return (
     <div className="max-w-6xl mx-auto p-6 space-y-12">
-      <h1 className="text-4xl font-bold">{member.name}</h1>
+      <div className="flex justify-between">
+        <h1 className="text-4xl font-bold">{member.name}</h1>
+        <a href="/members">Voltar</a>
+      </div>
+      
       <section className="text-center space-y-4 flex flex-row md:flex-col items-center">
         <div className="w-3/4"></div>
         <div className="w-1/4">
@@ -103,7 +91,7 @@ export default function Member() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">Favorita de tocar na Anistia</h2>
-        <SpotifySongs trackId={member.favoriteToPlay} />
+        <SpotifySongs trackId={member.favorite_to_play} />
       </section>
     </div>
   );

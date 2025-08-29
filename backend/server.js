@@ -75,6 +75,15 @@ server.get("/members", async () => {
     return await membersDatabase.list();
 })
 
+server.get("/members/:id", async (request, reply) => {
+    const memberId = request.params.id;
+    const member = await membersDatabase.get(memberId);
+    if (!member) {
+        return reply.status(404).send();
+    }
+    return member;
+})
+
 server.post("/members", async (request, reply) => {
     const { name, role, image, bio, albums, artists, favorite_to_play } = request.body;
 

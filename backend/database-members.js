@@ -6,6 +6,11 @@ export class DatabaseMembers {
         return await sql`SELECT * FROM members`;
     }
 
+    async get(id) {
+        const [member] = await sql`SELECT * FROM members WHERE id = ${id}`;
+        return member;
+    }
+
     async create(member){
         const memberId = randomUUID();
         const {

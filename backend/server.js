@@ -1,6 +1,7 @@
 import { fastify } from 'fastify';
 import cors from '@fastify/cors';
 import {DatabasePostgres} from './database-postgres.js';
+import { DatabaseMembers } from './database-members.js';
 
 const server = fastify();
 
@@ -9,6 +10,7 @@ await server.register(cors, {
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
 })
 
+// Tudo de shows
 const database = new DatabasePostgres();
 
 server.post('/shows', async (request, response) => {
@@ -66,6 +68,53 @@ server.delete('/shows/:id', async(request, response) => {
     return response.status(204).send();
 })
 
+// Membros
+const membersDatabase = new DatabaseMembers();
+
+server.get("/members", async () => {
+    return await membersDatabase.list();
+})
+
+server.post("/members", async (request, reply) => {
+    const { name, role, image, bio, albums, artists, favorite_to_play } = request.body;
+
+    await membersDatabase.create({
+        name,
+        role,
+        image,
+        bio,
+        albums,
+        artists,
+        favorite_to_play
+    });
+
+    return reply.status(201).send();
+})
+
+server.put("/members/:id", async (request, reply) => {
+    const memberId = request.params.id;
+    const { name, role, image, bio, albums, artists, favorite_to_play } = request.body;
+
+    await membersDatabase.update(memberId, {
+        name,
+        role,
+        image,
+        bio,
+        albums,
+        artists,
+        favorite_to_play
+    });
+
+    return reply.status(204).send();
+})
+
+server.delete("/members/:id", async (request, reply) => {
+    const memberId = request.params.id;
+
+    await membersDatabase.delete(memberId);
+
+    return reply.status(204).send();
+})
 
 server.listen({
     port: 3333

@@ -21,7 +21,6 @@ async function seed() {
     });
   }
 
-  console.log("✅ Seed dos members concluído!");
   process.exit();
 }
 

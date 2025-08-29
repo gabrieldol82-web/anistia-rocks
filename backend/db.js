@@ -4,7 +4,6 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { neon } from '@neondatabase/serverless';
 
-// Necessário para montar o caminho absoluto até a raiz
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 

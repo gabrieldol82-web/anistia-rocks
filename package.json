@@ -4,13 +4,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "npm-run-all --parallel server next backend",
+    "dev": "npm-run-all --parallel next backend",
     "next": "next dev",
     "build": "next build",
     "start": "next start",
     "backend": "node --watch backend/server.js",
-    "lint": "next lint",
-    "server": "npx json-server db.json -p 3001 --watch"
+    "lint": "next lint"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

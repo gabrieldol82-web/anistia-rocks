@@ -18,4 +18,4 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 Now run ```npx json-server db.json -p 3001``` to make members page works
 
-Open [http://localhost:3001] to see the API.
+Open [http://localhost:3333] to see the API.

@@ -5,6 +5,7 @@ import Tooltip from "@mui/material/Tooltip";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useState, useEffect } from "react";
+import Logo from "./Logo.js"
 
 export default function Navbar() {
   const [isAdmin, setIsAdmin] = useState(false);
@@ -13,12 +14,12 @@ export default function Navbar() {
   useEffect(() => {
     const checkAdminAuth = async () => {
       try {
-        const response = await fetch('/api/admin/auth');
+        const response = await fetch("/api/admin/auth");
         if (response.ok) {
           setIsAdmin(true);
         }
       } catch (error) {
-        console.error('Erro ao verificar autenticação:', error);
+        console.error("Erro ao verificar autenticação:", error);
       } finally {
         setLoading(false);
       }
@@ -29,17 +30,18 @@ export default function Navbar() {
 
   const handleLogout = async () => {
     try {
-      await fetch('/api/admin/login', { method: 'DELETE' });
+      await fetch("/api/admin/login", { method: "DELETE" });
       setIsAdmin(false);
-      window.location.href = '/'; 
+      window.location.href = "/";
     } catch (error) {
-      console.error('Erro ao fazer logout:', error);
+      console.error("Erro ao fazer logout:", error);
     }
   };
 
   return (
-    <nav className="top-0 right-0 left-0 p-8 bg-transparent font-sans font-nunito text-3xl font-semibold">
+    <nav className="top-0 right-0 left-0 p-8 bg-black/40 text-white font-sans font-nunito text-3xl font-semibold">
       <div className="flex items-center justify-between">
+        <Logo w={60} h={60} blur="blur-sm" />
         <ul className="flex space-x-14">
           <li>
             <a
@@ -79,9 +81,14 @@ export default function Navbar() {
         <div className="flex items-center space-x-4">
           {isAdmin && (
             <Tooltip title="Logout" arrow>
-              <button onClick={handleLogout} 
-                className="transition-transform hover:scale-110 hover:text-black hover:cursor-pointer">
-                <LogoutIcon className="p-2 rounded-full hover:bg-red-50 hover:shadow-lg" style={{ fontSize: 50 }} />
+              <button
+                onClick={handleLogout}
+                className="transition-transform hover:scale-110 hover:text-black hover:cursor-pointer"
+              >
+                <LogoutIcon
+                  className="p-2 rounded-full hover:bg-red-50 hover:shadow-lg"
+                  style={{ fontSize: 50 }}
+                />
               </button>
             </Tooltip>
           )}

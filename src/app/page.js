@@ -1,43 +1,47 @@
 import Image from "next/image";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import HomeImages from "./_components/HomeImages";
+import Logo from "./_components/Logo.js";
 
 export default function Home() {
   return (
-    <div className="w-full mt-12">
-      <section className="h-screen flex flex-col" id="section-1">
-        <div className="flex flex-1">
-          <div className="w-1/2 flex justify-center">
-            <Image
-              src="/assets/anistiaLogoTransparente.png"
-              alt="Anistia Logo"
-              width={500}
-              height={900}
-              className="object-contain max-h-[80vh] h-auto"
-            />
+    <div className="w-full">
+      <section className="min-h-screen flex flex-col" id="section-1">
+        <div className="flex flex-col md:flex-row flex-1">
+          <div className="w-full md:w-1/2 flex justify-center items-center p-8 md:p-0">
+            <Logo w={450} h={400} w_class="max-h-[60vh]" blur="blur-3xl" className="" />
           </div>
-          <div className="flex flex-col justify-center px-12 w-1/2 ">
-            <h1 className="text-4xl font-bold mb-4">Anistia Rocks!</h1>
-            <h2 className="text-2xl text-gray-300 mb-2">
+
+          <div className="w-full md:w-1/2 flex flex-col justify-center px-8 md:pr-44 py-8">
+            <h1 className="text-5xl md:text-8xl font-bold mb-8 md:mb-20">ANISTIA ROCKS!</h1>
+            <h2 className="text-xl md:text-3xl font-bold mb-4 md:mb-6 border-l-4 border-white pl-4">
               Banda de covers de metal de São Paulo, Capital.
             </h2>
-            <p className="text-lg text-gray-300 mb-6">
-              Desde 2023, tocamos covers variados de metal, como Korn, System of
-              a Down, Sepultura... Completar textos
+            <p className="text-base md:text-xl mb-6 leading-relaxed text-gray-300">
+              Desde 2023, levamos aos palcos a energia e o peso do metal com um
+              repertório repleto de clássicos que marcaram gerações. Tocamos
+              covers de bandas icônicas como{" "}
+              <span className="font-black text-red-500">Korn</span>,{" "}
+              <span className="font-black text-red-500">System of a Down</span>,{" "}
+              <span className="font-black text-red-500">Sepultura</span> e
+              muitas outras, sempre trazendo aquela mistura de hinos consagrados
+              e surpresas{" "}
+              <span className="italic font-medium text-slate-600">lado B</span>{" "}
+              que fazem os fãs vibrarem. Nosso objetivo é proporcionar uma
+              experiência intensa e autêntica, recriando a atmosfera dos grandes
+              shows e celebrando a paixão pelo metal em todas as suas vertentes.
             </p>
           </div>
         </div>
-        <div className="w-full flex justify-center mb-56">
+
+        <div className="w-full flex justify-center mt-auto mb-16 md:mb-56">
           <a href="#section-2" className="bg-transparent font-2xl">
-            <ExpandMoreIcon
-              fontSize="large"
-              className="hover:text-gray-100 transition-colors duration-300"
-            />
+            <ExpandMoreIcon fontSize="large" className="transition-colors duration-300" />
           </a>
         </div>
       </section>
-      <section className="h-screen" id="section-2">
+
+      <section className="min-h-screen" id="section-2">
         <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-16">
           <HomeImages imageSrc="/assets/home.JPG" altText="Foto mais foda" />
           <HomeImages imageSrc="/assets/home_2.jpg" altText="Foto da capa" />
@@ -51,7 +55,6 @@ export default function Home() {
           <HomeImages imageSrc="/assets/home_8.JPG" altText="Foto da capa" />
           <HomeImages imageSrc="/assets/home_10.jpg" altText="Foto da capa" />
           <HomeImages imageSrc="/assets/home_13.jpeg" altText="Foto da capa" />
-          
         </div>
       </section>
     </div>

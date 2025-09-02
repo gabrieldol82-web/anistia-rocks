@@ -19,11 +19,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
-      <body className={`${nunito.className} bg-zinc-700 text-white antialiased vsc-initialized`}>
+    <html lang="en" className="scroll-smooth w-full" suppressHydrationWarning>
+      <body className={`${nunito.className} text-sky-100 bg-black antialiased vsc-initialized`}>
         <Navbar />
         <ShowProvider>
-          <main className="flex justify-center mt-14 items-center sm:items-start mb-24">
+          <main className="flex flex-col w-full mt-14 mb-24">
             {children}
           </main>
         </ShowProvider>

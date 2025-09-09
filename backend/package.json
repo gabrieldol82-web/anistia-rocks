@@ -7,8 +7,9 @@
     "dev": "node --watch server.js"
   },
   "dependencies": {
-    "fastify": "^4.22.1",
+    "@fastify/cors": "^11.1.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.1.4",
-    "cors": "^2.8.5"
+    "fastify": "^4.22.1"
   }
 }

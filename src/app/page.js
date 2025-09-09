@@ -9,7 +9,7 @@ export default function Home() {
       <section className="min-h-screen flex flex-col" id="section-1">
         <div className="flex flex-col md:flex-row flex-1">
           <div className="w-full md:w-1/2 flex justify-center items-center p-8 md:p-0">
-            <Logo w={450} h={400} w_class="max-h-[60vh]" blur="blur-3xl" className="" />
+            <Logo responsive={true} w_class="max-h-[60vh]" blur="blur-3xl" />
           </div>
 
           <div className="w-full md:w-1/2 flex flex-col justify-center px-8 md:pr-44 py-8">

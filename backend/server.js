@@ -5,10 +5,22 @@ import { DatabaseMembers } from './database-members.js';
 
 const server = fastify();
 
+const ALLOWED_ORIGINS = [
+  process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+  process.env.PROD_SITE_URL || 'https://seu-site-producao.vercel.app',
+];
+
 await server.register(cors, {
-    origin: "http://localhost:3000",
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
-})
+  origin: (origin, cb) => {
+    if (!origin) return cb(null, true);
+    if (ALLOWED_ORIGINS.includes(origin)) {
+      cb(null, true);
+    } else {
+      cb(null, false);
+    }
+  },
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+});
 
 // Tudo de shows
 const database = new DatabasePostgres();
@@ -125,6 +137,6 @@ server.delete("/members/:id", async (request, reply) => {
     return reply.status(204).send();
 })
 
-server.listen({
-    port: 3333
-})
+const port = Number(process.env.PORT) || 3333;
+await server.listen({ port, host: '0.0.0.0' });
+console.log(`API rodando na porta ${port}`);

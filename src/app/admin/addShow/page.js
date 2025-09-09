@@ -1,12 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import Loading from "@/app/_components/Loading";
 
 export default function AddShow() {
-
   // Para autenticação
   const [authenticated, setAuthenticated] = useState(false);
   const [loadingAuth, setLoadingAuth] = useState(true);
@@ -20,19 +19,22 @@ export default function AddShow() {
   const [description, setDescription] = useState("");
 
   useEffect(() => {
-    fetch('/api/admin/auth').then(response => {
-      if(response.ok) {
-        setAuthenticated(true);
-      } else {
-        router.push('/admin/login');
-      }
-    }).catch(() => {
-      router.push('/admin/login');
-    }).finally(() => setLoadingAuth(false));
-  }, [router])
+    fetch("/api/admin/auth")
+      .then((response) => {
+        if (response.ok) {
+          setAuthenticated(true);
+        } else {
+          router.push("/admin/login");
+        }
+      })
+      .catch(() => {
+        router.push("/admin/login");
+      })
+      .finally(() => setLoadingAuth(false));
+  }, [router]);
 
   // if(loadingAuth) return <p><Loading /></p>;
-  if(!authenticated) return null;
+  if (!authenticated) return null;
 
   const inputClasses =
     "bg-gray-600 text-white border-0 rounded-md p-2 w-full focus:bg-gray-500 focus:outline-none transition ease-in-out duration-150 placeholder-gray-300";
@@ -56,7 +58,9 @@ export default function AddShow() {
         return;
       }
 
-      setlocation(data.logradouro + ", " + data.bairro + " - " + data.localidade);
+      setlocation(
+        data.logradouro + ", " + data.bairro + " - " + data.localidade
+      );
     } catch (error) {
       console.error("Erro ao buscar CEP:", error);
     } finally {
@@ -71,8 +75,8 @@ export default function AddShow() {
       Swal.fire({
         icon: "error",
         title: "Erro",
-        text: "Por favor, preencha todos os campos."
-      })
+        text: "Por favor, preencha todos os campos.",
+      });
       return;
     }
 
@@ -80,15 +84,15 @@ export default function AddShow() {
       title,
       location,
       description,
-      show_date: dateTime
-    }
+      show_date: dateTime,
+    };
 
-    const response = await fetch("http://localhost:3333/shows", {
+    const response = await fetch("/api/shows", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     });
 
     if (!response.ok) {
@@ -101,16 +105,14 @@ export default function AddShow() {
       setDateTime("");
       Swal.fire({
         text: "Show criado com sucesso!",
-        icon: "success"
+        icon: "success",
       }).then((isConfirmed) => {
-        if(isConfirmed) {
+        if (isConfirmed) {
           window.location.href = "/admin";
         }
-      })
-      
+      });
     }
-
-  }
+  };
 
   return (
     <div className="min-w-md max-w-4xl mx-auto p-4 bg-zinc-800 rounded-lg shadow-md">
@@ -149,26 +151,19 @@ export default function AddShow() {
         </div>
         <div>
           <label htmlFor="location">Local</label>
-          {loading ? (<p className="text-gray-300">Carregando endereço...</p>) : location ? ( <input
-              type="text"
-              id="location"
-              name="location"
-              className={`${inputClasses}`}
-              value={location}
-              readOnly
-            />) : (
-            <input
-              type="text"
-              id="cep"
-              name="cep"
-              placeholder="Digite o CEP"
-              className={inputClasses}
-              onBlur={checkCEP}
-            />
-          )}
+          <input
+            type="text"
+            id="location"
+            name="location"
+            className={inputClasses}
+            value={location}
+            placeholder={loading ? "Carregando endereço..." : "Digite o CEP"}
+            readOnly={loading || !!location}
+            onBlur={!location ? checkCEP : undefined}
+            onChange={(e) => !location && setlocation(e.target.value)} // evita erro
+          />
         </div>
-          
-         
+
         <div>
           <label htmlFor="date">Data</label>
           <input

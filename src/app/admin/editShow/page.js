@@ -100,7 +100,7 @@ export default function EditShow() {
       is_completed: is_completed,
     };
 
-    const res = await fetch(`http://localhost:3333/shows/${currentShow.id}`, {
+    const res = await fetch(`/api/shows/${currentShow.id}`, {
       method: "PUT",
       headers: {
         "Content-type": "application/json",

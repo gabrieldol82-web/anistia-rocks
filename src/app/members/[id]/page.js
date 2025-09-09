@@ -19,7 +19,7 @@ export default function Member() {
 
     async function fetchMember() {
       try {
-        const response = await fetch(`http://localhost:3333/members/${id}`);
+        const response = await fetch(`/api/members/${id}`);
         if (!response.ok) throw new Error("Erro ao buscar membro");
         const data = await response.json();
         setMember(data);

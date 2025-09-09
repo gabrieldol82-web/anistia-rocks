@@ -14,7 +14,7 @@ export default function ViewShows({ pageName, isAdmin = false }) {
   const { currentShow, setCurrentShow } = useShow();
 
   const getShows = async () => {
-    let res = await fetch("http://localhost:3333/shows");
+    let res = await fetch("/api/shows");
     let data = await res.json();
     setShows(data);
   };
@@ -46,7 +46,7 @@ export default function ViewShows({ pageName, isAdmin = false }) {
 
     if (result.isConfirmed) {
       setLoading(true);
-      await fetch(`http://localhost:3333/shows/${id}`, {
+      await fetch(`/api/shows/${id}`, {
         method: "DELETE",
       });
       setLoading(false);

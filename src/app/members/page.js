@@ -10,7 +10,7 @@ export default function Members() {
   const [isVisible, setIsVisible] = useState(false);
 
   async function fetchMembers() {
-    const response = await fetch("http://localhost:3333/members");
+    const response = await fetch("/api/members");
     const membersGET = await response.json();
 
     await Promise.all(

@@ -1,21 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🎸 Anistia Rocks  
 
-## Getting Started
+Site oficial da banda **Anistia**.  
+Projeto desenvolvido para divulgar shows, músicas e novidades, unindo **música + tecnologia**.  
 
-First, run the development server:
+🌐 [anistia-rocks.vercel.app](https://anistia-rocks.vercel.app/)  
 
+---
+
+## 🚀 Tecnologias  
+
+- **Front-end:** [Next.js](https://nextjs.org/) + [TailwindCSS](https://tailwindcss.com/)  
+- **Back-end:** [Node.js](https://nodejs.org/) + [Fastify](https://fastify.dev/)  
+- **Hospedagem Front:** [Vercel](https://vercel.com/)  
+- **Hospedagem Back:** [Render](https://render.com/)  
+
+---
+
+## 📦 Como rodar o projeto  
+
+Clone o repositório:  
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/gabrieldol82-web/anistia-rocks.git
+cd anistia-rocks
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Instale as dependências:  
+```bash
+npm install
+```
 
-Now run ```npx json-server db.json -p 3001``` to make members page works
+Inicie o projeto (frontend + backend juntos):  
+```bash
+npm run dev
+```
 
-Open [http://localhost:3333] to see the API.
+> 🔧 O projeto usa `npm-run-all --parallel next backend` para rodar **Next.js** e o **servidor Fastify** em paralelo.  
+
+---
+
+## 🤘 Sobre a banda  
+
+**Anistia** é uma banda de rock/metal brasileira que busca misturar peso e melodia, com letras intensas e energia de palco.  
+
+---
+
+## 💻 Autor<br>
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/gabrieldol82-web">
+        <img src="https://github.com/gabrieldol82-web.png" width="100px;" /><br>
+        <sub>
+          <b>Gabriel Dantas</b> 
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
+
+-----
+
+<h3 align="center"> Developed by <a href="https://www.linkedin.com/in/gabriel-dantas-874349160/">Gabriel Dantas</a> ☕</h3>

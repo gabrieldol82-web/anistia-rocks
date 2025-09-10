@@ -26,7 +26,7 @@ export default function Home() {
               <span className="font-black text-red-500">Sepultura</span> e
               muitas outras, sempre trazendo aquela mistura de hinos consagrados
               e surpresas{" "}
-              <span className="italic font-medium text-slate-600">lado B</span>{" "}
+              <span className="italic font-medium text-red-500">lado B</span>{" "}
               que fazem os fãs vibrarem. Nosso objetivo é proporcionar uma
               experiência intensa e autêntica, recriando a atmosfera dos grandes
               shows e celebrando a paixão pelo metal em todas as suas vertentes.
@@ -54,6 +54,7 @@ export default function Home() {
           <HomeImages imageSrc="/assets/home_8.JPG" altText="Foto da capa" />
           <HomeImages imageSrc="/assets/home_10.jpg" altText="Foto da capa" />
           <HomeImages imageSrc="/assets/home_13.jpeg" altText="Foto da capa" />
+          <HomeImages imageSrc="/assets/home_15.JPG" altText="Foto da capa" />
         </div>
       </section>
     </div>

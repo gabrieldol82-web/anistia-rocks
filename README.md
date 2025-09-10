@@ -40,7 +40,7 @@ npm run dev
 
 ## 🤘 Sobre a banda  
 
-**Anistia** é uma banda de rock/metal brasileira que busca misturar peso e melodia, com letras intensas e energia de palco.  
+**Anistia** é uma banda de covers de metal que busca trazer a experiência de grandes shows com os maiores clássicos do gênero.  
 
 ---
 

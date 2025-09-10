@@ -9,14 +9,15 @@ export default function HomeImages({ imageSrc, altText = "" }) {
   return (
     <>
       <div
-        className="relative min-h-[800px] max-h-[1000px] w-full overflow-hidden border-2 border-pink-700 rounded-lg aspect-square lg:odd:aspect-auto lg:odd:row-span-2 lg:odd:my-7 cursor-pointer"
+        className="mb-6 overflow-hidden border-2 border-pink-700 rounded-lg cursor-pointer break-inside-avoid"
         onClick={() => setIsOpen(true)}
       >
         <Image
           src={imageSrc}
           alt={altText}
-          layout="fill"
-          className="object-cover"
+          width={600}
+          height={800}
+          className="w-full h-auto object-cover"
         />
       </div>
 

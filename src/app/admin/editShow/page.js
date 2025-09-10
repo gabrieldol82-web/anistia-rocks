@@ -1,7 +1,7 @@
 "use client";
 import { useShow } from "../../_context/ShowContext";
 import { useEffect, useState } from "react";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import Loading from "@/app/_components/Loading";
 import { Switch } from "@mui/material";
@@ -49,7 +49,7 @@ export default function EditShow() {
     }
   }, [currentShow]);
 
-  if (loadingAuth) return (<Loading />);
+  if (loadingAuth) return <Loading />;
   if (!authenticated) return null;
 
   const inputClasses =
@@ -112,18 +112,18 @@ export default function EditShow() {
       Swal.fire({
         title: "Sucesso",
         text: "Show atualizado com sucesso!",
-        icon: "success"
+        icon: "success",
       }).then((isConfirmed) => {
-        if(isConfirmed) {
+        if (isConfirmed) {
           window.location.href = "/admin";
         }
-      })
+      });
     } else {
       Swal.fire({
         title: "Erro",
         text: "Erro ao atualizar o show.",
-        icon: "error"
-      })
+        icon: "error",
+      });
     }
   };
 
@@ -140,100 +140,102 @@ export default function EditShow() {
   }
 
   return (
-    <div className="min-w-md max-w-4xl mx-auto p-4 bg-white bg-zinc-800 rounded-lg shadow-md">
-      <h1 className="font-black text-center text-[28px]">Criar Novo Show</h1>
-      <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="title">Título</label>
-          <input
-            className={`${inputClasses}`}
-            placeholder="Nome do show"
-            type="text"
-            id="title"
-            name="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-          />
-        </div>
-        <div className="col-span-full">
-          <label
-            htmlFor="description"
-            className="block text-sm/6 font-medium text-white"
-          >
-            Descrição
-          </label>
+    <div className="container mx-auto px-4">
+      <div className="w-full max-w-4xl mx-auto p-4 bg-zinc-800 rounded-lg shadow-md">
+        <h1 className="font-black text-center text-[28px]">Criar Novo Show</h1>
+        <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
           <div>
-            <textarea
-              id="about"
-              name="about"
-              rows="3"
+            <label htmlFor="title">Título</label>
+            <input
               className={`${inputClasses}`}
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            ></textarea>
+              placeholder="Nome do show"
+              type="text"
+              id="title"
+              name="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+            />
           </div>
-        </div>
-        <div>
-          <label htmlFor="location">Local</label>
+          <div className="col-span-full">
+            <label
+              htmlFor="description"
+              className="block text-sm/6 font-medium text-white"
+            >
+              Descrição
+            </label>
+            <div>
+              <textarea
+                id="about"
+                name="about"
+                rows="3"
+                className={`${inputClasses}`}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              ></textarea>
+            </div>
+          </div>
+          <div>
+            <label htmlFor="location">Local</label>
 
-          {location ? (
-            <div className="flex flex-row items-center">
+            {location ? (
+              <div className="flex flex-row items-center">
+                <input
+                  type="text"
+                  id="location"
+                  name="location"
+                  className={`${inputClasses}`}
+                  value={location}
+                  readOnly
+                />
+                <HighlightOffIcon
+                  className="ml-2"
+                  onClick={() => setLocation("")}
+                />
+              </div>
+            ) : loading ? (
+              <p className="text-gray-300">Carregando endereço...</p>
+            ) : (
               <input
                 type="text"
-                id="location"
-                name="location"
-                className={`${inputClasses}`}
-                value={location}
-                readOnly
+                id="cep"
+                name="cep"
+                placeholder="Digite o CEP"
+                className={inputClasses}
+                onBlur={checkCEP}
               />
-              <HighlightOffIcon
-                className="ml-2"
-                onClick={() => setLocation("")}
-              />
-            </div>
-          ) : loading ? (
-            <p className="text-gray-300">Carregando endereço...</p>
-          ) : (
-            <input
-              type="text"
-              id="cep"
-              name="cep"
-              placeholder="Digite o CEP"
-              className={inputClasses}
-              onBlur={checkCEP}
-            />
-          )}
-        </div>
+            )}
+          </div>
 
-        <div>
-          <label htmlFor="date">Data</label>
-          <input
-            type="datetime-local"
-            id="date"
-            name="date"
-            required
-            className={`${inputClasses}`}
-            value={dateTime}
-            onChange={(e) => setDateTime(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="is_completed">Show já ocorreu?</label>
-          <Switch
-            id="is_completed"
-            name="is_completed"
-            checked={is_completed}
-            onChange={checkIsCompleted}
-          />
-        </div>
-        <button
-          className="bg-indigo-600 text-white rounded-md p-2 hover:bg-indigo-700 transition duration-150 cursor-pointer"
-          type="submit"
-        >
-          Salvar edição
-        </button>
-      </form>
+          <div>
+            <label htmlFor="date">Data</label>
+            <input
+              type="datetime-local"
+              id="date"
+              name="date"
+              required
+              className={`${inputClasses}`}
+              value={dateTime}
+              onChange={(e) => setDateTime(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="is_completed">Show já ocorreu?</label>
+            <Switch
+              id="is_completed"
+              name="is_completed"
+              checked={is_completed}
+              onChange={checkIsCompleted}
+            />
+          </div>
+          <button
+            className="bg-indigo-600 text-white rounded-md p-2 hover:bg-indigo-700 transition duration-150 cursor-pointer"
+            type="submit"
+          >
+            Salvar edição
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

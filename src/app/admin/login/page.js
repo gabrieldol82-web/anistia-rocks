@@ -1,9 +1,11 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/app/_context/AuthContext";
 
 export default function AdminLogin() {
   const [password, setPassword] = useState("");
+  const { login } = useAuth();
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
@@ -25,8 +27,9 @@ export default function AdminLogin() {
       const data = await response.json();
 
       if (response.ok) {
+        login();
         router.push("/admin");
-        router.refresh(); // Força atualização para o middleware detectar o cookie
+        router.refresh(); 
       } else {
         setError(data.error || "Erro ao fazer login");
       }

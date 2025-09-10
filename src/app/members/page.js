@@ -34,9 +34,8 @@ export default function Members() {
   useEffect(() => {
     fetchMembers();
     
-    // Verificar se é mobile
     const checkIsMobile = () => {
-      setIsMobile(window.innerWidth < 1024); // lg breakpoint
+      setIsMobile(window.innerWidth < 1024); 
     };
     
     checkIsMobile();
@@ -51,8 +50,7 @@ export default function Members() {
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 justify-items-center">
         {members.map((member, index) => {
-          // Para mobile: mesma animação para todos
-          // Para desktop: animação alternada como antes
+
           const isEven = index % 2 === 0;
           
           return (

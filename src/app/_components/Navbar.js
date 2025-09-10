@@ -6,11 +6,12 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+import { useAuth } from "../_context/AuthContext.js";
 import { useState, useEffect } from "react";
 import Logo from "./Logo.js";
 
 export default function Navbar() {
-  const [isAdmin, setIsAdmin] = useState(false);
+  const { isAdmin, login, logout } = useAuth();
   const [loading, setLoading] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -19,7 +20,7 @@ export default function Navbar() {
       try {
         const response = await fetch("/api/admin/auth");
         if (response.ok) {
-          setIsAdmin(true);
+          login();
         }
       } catch (error) {
         console.error("Erro ao verificar autenticação:", error);
@@ -34,7 +35,7 @@ export default function Navbar() {
   const handleLogout = async () => {
     try {
       await fetch("/api/admin/login", { method: "DELETE" });
-      setIsAdmin(false);
+      logout();
       window.location.href = "/";
     } catch (error) {
       console.error("Erro ao fazer logout:", error);

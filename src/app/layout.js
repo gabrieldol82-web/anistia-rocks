@@ -2,6 +2,7 @@ import "./globals.css";
 import Navbar from "./_components/Navbar";
 import { Nunito } from "next/font/google";
 import { ShowProvider } from "./_context/ShowContext";
+import { AuthProvider } from "./_context/AuthContext"; 
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -21,12 +22,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth w-full" suppressHydrationWarning>
       <body className={`${nunito.className} text-sky-100 bg-black antialiased vsc-initialized`}>
-        <Navbar />
-        <ShowProvider>
-          <main className="flex flex-col w-full mt-14 mb-24">
-            {children}
-          </main>
-        </ShowProvider>
+        <AuthProvider>
+          <Navbar />
+          <ShowProvider>
+            <main className="flex flex-col w-full mt-14 mb-24">
+              {children}
+            </main>
+          </ShowProvider>
+        </AuthProvider>
       </body>
     </html>
   );

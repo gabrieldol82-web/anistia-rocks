@@ -42,7 +42,7 @@ export default function Home() {
       </section>
 
       <section className="min-h-screen" id="section-2">
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-16">
+        <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 p-16 mx-auto max-w-6xl">
           <HomeImages imageSrc="/assets/home.JPG" altText="Foto mais foda" />
           <HomeImages imageSrc="/assets/home_2.jpg" altText="Foto da capa" />
           <HomeImages imageSrc="/assets/home_3.jpg" altText="Foto da capa" />
@@ -51,7 +51,6 @@ export default function Home() {
           <HomeImages imageSrc="/assets/home_14.jpeg" altText="Foto da capa" />
           <HomeImages imageSrc="/assets/home_12.jpg" altText="Foto da capa" />
           <HomeImages imageSrc="/assets/home_11.jpg" altText="Foto da capa" />
-          <HomeImages imageSrc="/assets/home_6.JPG" altText="Foto da capa" />
           <HomeImages imageSrc="/assets/home_8.JPG" altText="Foto da capa" />
           <HomeImages imageSrc="/assets/home_10.jpg" altText="Foto da capa" />
           <HomeImages imageSrc="/assets/home_13.jpeg" altText="Foto da capa" />

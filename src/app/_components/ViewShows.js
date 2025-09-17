@@ -66,7 +66,22 @@ export default function ViewShows({ pageName, isAdmin = false }) {
 
   return (
     <div className="overflow-y-auto">
-      <h1 className="from-neutral-50 text-center text-[28px]">{pageName}</h1>
+      <div className="flex justify-between items-center m-6">
+        <div></div>
+        <h1 className="from-neutral-50 text-center text-[28px]">{pageName}</h1>
+        {isAdmin ? (
+        <div className="flex justify-end">
+          <a
+            className="bg-indigo-600 rounded-md p-2 hover:bg-indigo-700 transition duration-150 cursor-pointer"
+            href="/admin/addShow"
+          >
+            Novo show
+          </a>
+        </div>
+      ) : (
+        "<div></div>"
+      )}
+      </div>
       {shows.length === 0 && (
         <p className="text-center text-zinc-400">Carregando Shows...</p>
       )}
@@ -109,18 +124,6 @@ export default function ViewShows({ pageName, isAdmin = false }) {
           </div>
         );
       })}
-      {isAdmin ? (
-        <div className="flex justify-end mt-7">
-          <a
-            className="bg-indigo-600 rounded-md p-2 hover:bg-indigo-700 transition duration-150 cursor-pointer"
-            href="/admin/addShow"
-          >
-            Novo show
-          </a>
-        </div>
-      ) : (
-        ""
-      )}
     </div>
   );
 }

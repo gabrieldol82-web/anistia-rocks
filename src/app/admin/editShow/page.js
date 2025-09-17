@@ -27,10 +27,6 @@ export default function EditShow() {
   })
 
   useEffect(() => {
-    console.log("Form data atualizado:", formData);
-  }, [formData]);
-
-  useEffect(() => {
     fetch("/api/admin/auth")
       .then((response) => {
         if (response.ok) {

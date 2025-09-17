@@ -15,12 +15,20 @@ export default function EditShow() {
 
   // Variáveis de post
   const { currentShow } = useShow();
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [location, setLocation] = useState("");
-  const [dateTime, setDateTime] = useState("");
-  const [is_completed, setIs_completed] = useState(false);
+  const [loadingCep, setLoadingCep] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const [formData, setFormData] = useState({
+    title: "",
+    location: "",
+    description: "",
+    dateTime: "",
+    is_completed: false,
+  })
+
+  useEffect(() => {
+    console.log("Form data atualizado:", formData);
+  }, [formData]);
 
   useEffect(() => {
     fetch("/api/admin/auth")
@@ -39,13 +47,15 @@ export default function EditShow() {
 
   useEffect(() => {
     if (currentShow) {
-      setTitle(currentShow.title);
-      setDescription(currentShow.description);
-      setLocation(currentShow.location);
-      setIs_completed(currentShow.is_completed);
       const date = new Date(currentShow.show_date);
       const formattedDateTime = date.toISOString().slice(0, 16);
-      setDateTime(formattedDateTime);
+      setFormData({
+        title: currentShow.title,
+        description: currentShow.description,
+        location: currentShow.location,
+        dateTime: formattedDateTime,
+        is_completed: currentShow.is_completed,
+      });
     }
   }, [currentShow]);
 
@@ -63,7 +73,7 @@ export default function EditShow() {
       return;
     }
 
-    setLoading(true);
+    setLoadingCep(true);
 
     try {
       const res = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
@@ -74,30 +84,44 @@ export default function EditShow() {
         return;
       }
 
-      setLocation(
-        data.logradouro + ", " + data.bairro + " - " + data.localidade
-      );
+      setFormData(prev => ({
+        ...prev,
+        location: data.logradouro + ", " + data.bairro + " - " + data.localidade
+      }));
     } catch (error) {
       console.error("Erro ao buscar CEP:", error);
     } finally {
-      setLoading(false);
+      setLoadingCep(false);
     }
   };
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    })
+    if(e.target.name === "is_completed") {
+      setFormData({
+        ...formData,
+        is_completed: !formData.is_completed,
+      })
+    }
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!title || !description || !dateTime || !location) {
+    if (!formData.title || !formData.description || !formData.dateTime || !formData.location) {
       alert("Por favor, preencha todos os campos.");
       return;
     }
 
     const updatedShow = {
-      title,
-      description,
-      location,
-      show_date: dateTime,
-      is_completed: is_completed,
+      title: formData.title,
+      description: formData.description,
+      location: formData.location,
+      show_date: formData.dateTime,
+      is_completed: formData.is_completed,
     };
 
     const res = await fetch(`/api/shows/${currentShow.id}`, {
@@ -127,10 +151,6 @@ export default function EditShow() {
     }
   };
 
-  const checkIsCompleted = (e) => {
-    setIs_completed(e.target.checked);
-  };
-
   if (!currentShow) {
     return (
       <div className="min-w-md max-w-4xl mx-auto p-4 bg-white bg-zinc-800 rounded-lg shadow-md">
@@ -152,8 +172,8 @@ export default function EditShow() {
               type="text"
               id="title"
               name="title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              value={formData.title}
+              onChange={handleChange}
               required
             />
           </div>
@@ -166,35 +186,28 @@ export default function EditShow() {
             </label>
             <div>
               <textarea
-                id="about"
-                name="about"
+                id="description"
+                name="description"
                 rows="3"
                 className={`${inputClasses}`}
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                value={formData.description}
+                onChange={handleChange}
               ></textarea>
             </div>
           </div>
           <div>
             <label htmlFor="location">Local</label>
-
-            {location ? (
-              <div className="flex flex-row items-center">
-                <input
-                  type="text"
-                  id="location"
-                  name="location"
-                  className={`${inputClasses}`}
-                  value={location}
-                  readOnly
-                />
-                <HighlightOffIcon
-                  className="ml-2"
-                  onClick={() => setLocation("")}
-                />
-              </div>
-            ) : loading ? (
+            {loadingCep ? (
               <p className="text-gray-300">Carregando endereço...</p>
+            ) : formData.location ? (
+              <input
+                type="text"
+                id="location"
+                name="location"
+                className={`${inputClasses}`}
+                value={formData.location}
+                onChange={handleChange}
+              />
             ) : (
               <input
                 type="text"
@@ -212,11 +225,11 @@ export default function EditShow() {
             <input
               type="datetime-local"
               id="date"
-              name="date"
+              name="dateTime"
               required
               className={`${inputClasses}`}
-              value={dateTime}
-              onChange={(e) => setDateTime(e.target.value)}
+              value={formData.dateTime}
+              onChange={handleChange}
             />
           </div>
           <div>
@@ -224,8 +237,8 @@ export default function EditShow() {
             <Switch
               id="is_completed"
               name="is_completed"
-              checked={is_completed}
-              onChange={checkIsCompleted}
+              checked={formData.is_completed}
+              onChange={handleChange}
             />
           </div>
           <button

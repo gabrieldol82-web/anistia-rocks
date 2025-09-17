@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Loading from "../_components/Loading";
+import Image from "next/image";
 
 export default function Members() {
   const [members, setMembers] = useState([]);
@@ -11,24 +12,18 @@ export default function Members() {
   const [isMobile, setIsMobile] = useState(false);
 
   async function fetchMembers() {
-    const response = await fetch("/api/members");
-    const membersGET = await response.json();
-
-    await Promise.all(
-      membersGET.map((member) => {
-        return new Promise((resolve) => {
-          const img = new Image();
-          img.src = member.image;
-          img.onload = resolve;
-          img.onerror = resolve;
-        });
-      })
-    );
-
-    setMembers(membersGET);
-    setLoading(false);
-    
-    setTimeout(() => setIsVisible(true), 50);
+    try {
+      const response = await fetch("/api/members");
+      const membersGET = await response.json();
+      
+      setMembers(membersGET);
+      setLoading(false);
+      
+      setTimeout(() => setIsVisible(true), 50);
+    } catch (error) {
+      console.error("Error fetching members:", error);
+      setLoading(false);
+    }
   }
 
   useEffect(() => {
@@ -50,7 +45,6 @@ export default function Members() {
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 justify-items-center">
         {members.map((member, index) => {
-
           const isEven = index % 2 === 0;
           
           return (
@@ -66,16 +60,26 @@ export default function Members() {
                 transformOrigin: isMobile ? "center" : (isEven ? "top center" : "bottom center")
               }}
             >
-              <img
-                src={member.image}
-                alt={member.name}
-                className="w-auto h-96 rounded-2xl object-cover mb-4 transition-transform duration-700"
+              <div 
+                className="w-full h-96 relative rounded-2xl mb-4 overflow-hidden transition-transform duration-700"
                 style={{ 
                   transform: isVisible ? "scale(1)" : "scale(0.9)",
                   opacity: isVisible ? 1 : 0,
                   transitionDelay: `${index * 100 + 300}ms`
                 }}
-              />
+              >
+                <Image
+                  src={member.image}
+                  alt={member.name}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-cover"
+                  priority={index < 4}
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaUMk9kfa"
+                />
+              </div>
+              
               <h2 className="text-2xl font-black text-black bg-yellow-500 py-1.5 px-8 inline-block -skew-x-12 transition-all duration-700"
                   style={{ 
                     opacity: isVisible ? 1 : 0,

@@ -78,9 +78,7 @@ export default function ViewShows({ pageName, isAdmin = false }) {
             Novo show
           </a>
         </div>
-      ) : (
-        "<div></div>"
-      )}
+        ) : (<div></div>)}
       </div>
       {shows.length === 0 && (
         <p className="text-center text-zinc-400">Carregando Shows...</p>

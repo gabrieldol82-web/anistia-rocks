@@ -13,10 +13,13 @@ export default function AddShow() {
 
   // Variáveis de post
   const [loading, setLoading] = useState(false);
-  const [location, setlocation] = useState("");
-  const [title, setTitle] = useState("");
-  const [dateTime, setDateTime] = useState("");
-  const [description, setDescription] = useState("");
+  const [loadingCep, setLoadingCep] = useState(false);
+  const [formData, setFormData] = useState({
+    title: "",
+    location: "",
+    description: "",
+    dateTime: "",
+  });
 
   useEffect(() => {
     fetch("/api/admin/auth")
@@ -46,7 +49,7 @@ export default function AddShow() {
       return;
     }
 
-    setLoading(true);
+    setLoadingCep(true);
 
     try {
       const res = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
@@ -57,20 +60,28 @@ export default function AddShow() {
         return;
       }
 
-      setlocation(
-        data.logradouro + ", " + data.bairro + " - " + data.localidade
-      );
+      setFormData(prev => ({
+        ...prev,
+        location: data.logradouro + ", " + data.bairro + " - " + data.localidade
+      }));
     } catch (error) {
       console.error("Erro ao buscar CEP:", error);
     } finally {
-      setLoading(false);
+      setLoadingCep(false);
     }
   };
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (!title || !description || !dateTime || !location) {
+    if (!formData.title || !formData.description || !formData.dateTime || !formData.location) {
       Swal.fire({
         icon: "error",
         title: "Erro",
@@ -80,10 +91,10 @@ export default function AddShow() {
     }
 
     let data = {
-      title,
-      location,
-      description,
-      show_date: dateTime,
+      title: formData.title,
+      location: formData.location,
+      description: formData.description,
+      show_date: formData.dateTime,
     };
 
     const response = await fetch("/api/shows", {
@@ -98,10 +109,12 @@ export default function AddShow() {
       alert("Erro ao criar show");
       return;
     } else {
-      setTitle("");
-      setlocation("");
-      setDescription("");
-      setDateTime("");
+      setFormData({
+        title: "",
+        location: "",
+        description: "",
+        dateTime: "",
+      });
       Swal.fire({
         text: "Show criado com sucesso!",
         icon: "success",
@@ -126,8 +139,8 @@ export default function AddShow() {
               type="text"
               id="title"
               name="title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              value={formData.title}
+              onChange={handleChange}
               required
             />
           </div>
@@ -140,27 +153,27 @@ export default function AddShow() {
             </label>
             <div>
               <textarea
-                id="about"
-                name="about"
+                id="description"
+                name="description"
                 rows="3"
                 className={`${inputClasses}`}
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                value={formData.description}
+                onChange={handleChange}
               ></textarea>
             </div>
           </div>
           <div>
             <label htmlFor="location">Local</label>
-            {loading ? (
+            {loadingCep ? (
               <p className="text-gray-300">Carregando endereço...</p>
-            ) : location ? (
+            ) : formData.location ? (
               <input
                 type="text"
                 id="location"
                 name="location"
                 className={`${inputClasses}`}
-                value={location}
-                readOnly
+                value={formData.location}
+                onChange={handleChange}
               />
             ) : (
               <input
@@ -179,11 +192,11 @@ export default function AddShow() {
             <input
               type="datetime-local"
               id="date"
-              name="date"
+              name="dateTime"
               required
               className={`${inputClasses}`}
-              value={dateTime}
-              onChange={(e) => setDateTime(e.target.value)}
+              value={formData.dateTime}
+              onChange={handleChange}
               min={new Date().toISOString().slice(0, 16)}
             />
           </div>

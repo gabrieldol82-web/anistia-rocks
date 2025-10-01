@@ -1,9 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import Loading from "@/app/_components/Loading";
 
 export default function AddShow() {
   // Para autenticação

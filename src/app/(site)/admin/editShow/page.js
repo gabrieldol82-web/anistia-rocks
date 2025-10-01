@@ -1,10 +1,10 @@
 "use client";
-import Loading from "@/app/_components/Loading";
 import { Switch } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import Swal from "swe@/app/(site)/_components/Loading
-import { useShow } from "../../../_context/ShowContext";
+import Swal from "sweetalert2";
+import Loading from "../../_components/Loading";
+import { useShow } from "../../_context/ShowContext";
 
 export default function EditShow() {
   // Para autenticação

@@ -1,5 +1,5 @@
-import Image from "next/image";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Link from 'next/link';
 import HomeImages from "./_components/HomeImages";
 import Logo from "./_components/Logo.js";
 
@@ -31,6 +31,7 @@ export default function Home() {
               experiência intensa e autêntica, recriando a atmosfera dos grandes
               shows e celebrando a paixão pelo metal em todas as suas vertentes.
             </p>
+            <p><Link href="/gif" target="_blank">Não clique aqui</Link></p>
           </div>
         </div>
 

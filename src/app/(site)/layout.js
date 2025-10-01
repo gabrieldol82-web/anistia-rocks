@@ -1,8 +1,8 @@
-import "./globals.css";
-import Navbar from "./_components/Navbar";
 import { Nunito } from "next/font/google";
+import "../globals.css";
+import Navbar from "./_components/Navbar";
+import { AuthProvider } from "./_context/AuthContext";
 import { ShowProvider } from "./_context/ShowContext";
-import { AuthProvider } from "./_context/AuthContext"; 
 
 const nunito = Nunito({
   subsets: ["latin"],

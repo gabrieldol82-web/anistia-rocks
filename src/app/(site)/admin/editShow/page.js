@@ -1,11 +1,10 @@
 "use client";
-import { useShow } from "../../_context/ShowContext";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import Loading from "@/app/_components/Loading";
 import { Switch } from "@mui/material";
-import Swal from "sweetalert2";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import Swal from "swe@/app/(site)/_components/Loading
+import { useShow } from "../../../_context/ShowContext";
 
 export default function EditShow() {
   // Para autenticação

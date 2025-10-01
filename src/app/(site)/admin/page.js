@@ -1,9 +1,8 @@
 "use client";
 
-import ViewShows from "../_components/ViewShows";
-import Loading from "../_components/Loading";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import ViewShows from "../_components/ViewShows";
 
 export default function AdminPage() {
   const [authenticated, setAuthenticated] = useState(false);
